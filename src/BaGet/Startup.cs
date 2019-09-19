@@ -54,7 +54,10 @@ namespace BaGet
             }
 
             app.UsePathBase(options.PathBase);
-            app.UseForwardedHeaders();
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseSpaStaticFiles();
 
             app.UseCors(ConfigureCorsOptions.CorsPolicy);
